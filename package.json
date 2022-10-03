@@ -1,0 +1,22 @@
+{
+  "name": "frontend_react",
+  "version": "1.0.0",
+  "description": "Study react",
+  "main": "src/index.js",
+  "scripts": {
+    "start":"webpack-dev-server --mode development --open --hot",
+    "build":"webpack --mode production"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "html-webpack-plugin": "^5.5.0",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0",
+    "webpack-dev-server": "^4.11.1"
+  }
+}
