@@ -8,29 +8,14 @@
 <script type="text/babel">
   'use strict';
 
-  class LikeButton extends React.Component {
-      constructor(props) {
-          super(props);
-          this.state = {
-              liked: false,
-          };
-      }
-
-    render() { // HTML 파일이지만, 컨트롤은 javascript로 처리
-      if (this.state.liked) {
-        return 'You liked this.';
-      }
-
-      return (
-
-          <button onClick={() => {
-            this.setState({liked: true})
-            // this.state.liked = true; 식으로 처리할 수 없다.(불변성)
-          }}>
-              Like
-          </button>
-      );
+  function LikeButton() { // 함수 컴퍼넌트
+    const [liked, setLiked] = React.useState(false);
+    if(liked) {
+      return 'You liked this.';
     }
+    return (
+      <button onClick={() => {setLiked(true);}}>Like</button>
+    );
   }
 </script>
 <script type="text/babel">
