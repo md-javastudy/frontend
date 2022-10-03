@@ -10,10 +10,20 @@
     class RockPaperScissors extends React.Component {
       constructor(props) {
         super(props);
+        let array = ['가위','바위','보'];
+        this.state = {
+          user1 : array[Math.ceil(Math.random() * 3)-1],
+          user2 : array[Math.ceil(Math.random() * 3)-1],
+          result : '',
+        }
       }
 
       render() {
-        return ;
+        return (
+          <div>
+            <div>USER1는 {this.state.user1}, USER2는 {this.state.user2}을 내셨습니다.</div>
+          </div>
+        );
       }
     }
   </script>
