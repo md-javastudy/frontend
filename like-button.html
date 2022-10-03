@@ -9,10 +9,10 @@
   'use strict';
 
   class LikeButton extends React.Component {
-    constructor(props) {
-      super(props);
-      this.state = {liked: false};
-    }
+      constructor(props) {
+          super(props);
+          this.state = {liked: false};
+      }
 
     render() {
       if (this.state.liked) {
@@ -28,7 +28,8 @@
   }
 </script>
 <script type="text/babel">
-  ReactDOM.render(<LikeButton />, document.querySelector('#root'));
+  //ReactDOM.render(<LikeButton />, document.querySelector('#root')); // REACT 17 VERSION CODE
+  ReactDOM.createRoot(document.querySelector('#root')).render(<LikeButton />);
 </script>
 </body>
 </html>
