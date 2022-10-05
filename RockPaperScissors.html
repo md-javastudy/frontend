@@ -21,33 +21,31 @@
         }
       }
 
+      onSubmit = (e) => {
+        e.preventDefault();
+        let userAi = Math.ceil(Math.random() * 3);
+        let resultValue = '';
+        if(userAi - this.state.value === 0) {
+          resultValue = '무승부하셨습니다';
+        } else if((3 + userAi - this.state.value) % 3 === 2) {
+          resultValue = 'USER2가 승리했습니다';
+        } else {
+          resultValue = 'USER1가 승리했습니다';
+        }
+        this.setState({
+          user1 : this.array[userAi -1 ],
+          user2 : this.array[this.state.value -1],
+          result : resultValue,
+        })
+      };
+
       render() {
         return (
           <div>
-            <form onSubmit={(e) => {
-              e.preventDefault();
-              let userAi = Math.ceil(Math.random() * 3);
-              let resultValue = '';
-              if(this.state.value === '') {
-                resultValue = 'USER2가 포기했습니다';
-              } else if(userAi - this.state.value === 0) {
-                resultValue = '무승부하셨습니다';
-              } else if(userAi - this.state.value === -1 || userAi - this.state.value === 2) {
-                resultValue = 'USER2가 승리했습니다';
-              } else {
-                resultValue = 'USER1가 승리했습니다';
-              }
-              this.setState({
-                user1 : this.array[userAi -1 ],
-                user2 : this.array[this.state.value -1],
-                result : resultValue,
-              })
-            }}>
+            <form onSubmit={this.onSubmit}>
               <button onClick={(e) => this.setState({value: 1})}>가위</button>
               <button onClick={(e) => this.setState({value: 2})}>바위</button>
               <button onClick={(e) => this.setState({value: 3})}>보</button>
-              <br/>
-              <input type="hidden" value={this.state.value} onChange={(e) => this.setState({value: e.target.value})} />
             </form>
             <div>USER1는 {this.state.user1}, USER2는 {this.state.user2}입니다.</div>
             <div>{this.state.result}</div>
