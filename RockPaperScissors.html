@@ -1,5 +1,7 @@
 <html>
 <head>
+  <meta charset="UTF-8" />
+  <title>가위바위보</title>
   <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
   <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
@@ -10,18 +12,46 @@
     class RockPaperScissors extends React.Component {
       constructor(props) {
         super(props);
-        let array = ['가위','바위','보'];
+        this.array = ['가위','바위','보'];
         this.state = {
-          user1 : array[Math.ceil(Math.random() * 3)-1],
-          user2 : array[Math.ceil(Math.random() * 3)-1],
-          result : '',
+          user1 : '준비중',
+          user2 : '준비중',
+          value: '',
+          result : '준비',
         }
       }
 
       render() {
         return (
           <div>
-            <div>USER1는 {this.state.user1}, USER2는 {this.state.user2}을 내셨습니다.</div>
+            <form onSubmit={(e) => {
+              e.preventDefault();
+              let userAi = Math.ceil(Math.random() * 3);
+              let resultValue = '';
+              if(this.state.value === '') {
+                resultValue = '패배';
+              } else if(userAi - this.state.value === 0) {
+                resultValue = '무승부';
+              } else if(userAi - this.state.value === -1 || userAi - this.state.value === 2) {
+                resultValue = '승리';
+              } else {
+                resultValue = '패배';
+              }
+              this.setState({
+                user1 : this.array[userAi -1 ],
+                user2 : this.array[this.state.value -1],
+                result : resultValue,
+              })
+            }}>
+              <button onClick={(e) => this.setState({value: 1})}>가위</button>
+              <button onClick={(e) => this.setState({value: 2})}>바위</button>
+              <button onClick={(e) => this.setState({value: 3})}>보</button>
+              <br/>
+              <input type="hidden" value={this.state.value} onChange={(e) => this.setState({value: e.target.value})} />
+            </form>
+            <div>USER1는 {this.state.user1}, USER2는 {this.state.user2}입니다.</div>
+            <div>USER2가 {this.state.result} 하셨습니다.</div>
+
           </div>
         );
       }
