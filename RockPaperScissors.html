@@ -10,16 +10,13 @@
   <div id="root"></div>
   <script type="text/babel">
     class RockPaperScissors extends React.Component {
-      constructor(props) {
-        super(props);
-        this.array = ['가위','바위','보'];
-        this.state = {
-          user1 : '준비중',
-          user2 : '준비중',
-          value: '',
-          result : '준비상태입니다',
-        }
-      }
+      array = ['가위','바위','보'];
+      state = {
+        user1 : '준비중',
+        user2 : '준비중',
+        value: '',
+        result : '준비상태입니다',
+      };
 
       onSubmit = (e) => {
         e.preventDefault();
