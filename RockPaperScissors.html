@@ -41,7 +41,7 @@
 
       render() {
         return (
-          <div>
+          <React.Fragment>
             <form onSubmit={this.onSubmit}>
               <button onClick={(e) => this.setState({value: 1})}>가위</button>
               <button onClick={(e) => this.setState({value: 2})}>바위</button>
@@ -49,8 +49,7 @@
             </form>
             <div>USER1는 {this.state.user1}, USER2는 {this.state.user2}입니다.</div>
             <div>{this.state.result}</div>
-
-          </div>
+          </React.Fragment>
         );
       }
     }
