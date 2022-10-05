@@ -12,6 +12,8 @@
     class RockPaperScissors extends React.Component {
       array = ['가위','바위','보'];
       state = {
+        user1Select : Math.ceil(Math.random() * 3),
+        user2Select : Math.ceil(Math.random() * 3),
         user1 : '준비중',
         user2 : '준비중',
         value: '',
@@ -20,19 +22,16 @@
 
       onSubmit = (e) => {
         e.preventDefault();
-        let userAi = Math.ceil(Math.random() * 3);
-        let resultValue = '';
-        if(userAi - this.state.value === 0) {
-          resultValue = '무승부하셨습니다';
-        } else if((3 + userAi - this.state.value) % 3 === 2) {
-          resultValue = 'USER2가 승리했습니다';
-        } else {
-          resultValue = 'USER1가 승리했습니다';
-        }
-        this.setState({
-          user1 : this.array[userAi -1 ],
-          user2 : this.array[this.state.value -1],
-          result : resultValue,
+        this.setState((prevState) => {
+          return {
+            user1Select : Math.ceil(Math.random() * 3),
+            user2Select : this.state.value,
+            user1 : this.array[prevState.user1Select -1],
+            user2 : this.array[prevState.value -1],
+            result : (prevState.user1Select - prevState.value === 0) ? '무승부하셨습니다'
+                    : ((3 + prevState.user1Select - prevState.value) % 3 === 2) ? 'USER2가 승리했습니다'
+                    : 'USER1가 승리했습니다',
+          };
         })
       };
 
