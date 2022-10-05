@@ -17,7 +17,7 @@
           user1 : '준비중',
           user2 : '준비중',
           value: '',
-          result : '준비',
+          result : '준비상태입니다',
         }
       }
 
@@ -29,13 +29,13 @@
               let userAi = Math.ceil(Math.random() * 3);
               let resultValue = '';
               if(this.state.value === '') {
-                resultValue = '패배';
+                resultValue = 'USER2가 포기했습니다';
               } else if(userAi - this.state.value === 0) {
-                resultValue = '무승부';
+                resultValue = '무승부하셨습니다';
               } else if(userAi - this.state.value === -1 || userAi - this.state.value === 2) {
-                resultValue = '승리';
+                resultValue = 'USER2가 승리했습니다';
               } else {
-                resultValue = '패배';
+                resultValue = 'USER1가 승리했습니다';
               }
               this.setState({
                 user1 : this.array[userAi -1 ],
@@ -50,7 +50,7 @@
               <input type="hidden" value={this.state.value} onChange={(e) => this.setState({value: e.target.value})} />
             </form>
             <div>USER1는 {this.state.user1}, USER2는 {this.state.user2}입니다.</div>
-            <div>USER2가 {this.state.result} 하셨습니다.</div>
+            <div>{this.state.result}</div>
 
           </div>
         );
