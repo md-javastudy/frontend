@@ -9,10 +9,24 @@
 </head>
 <body>
 <div id="root"></div>
+Hooks :
 <div id="hooks"></div>
 <script type="text/babel">
 	const GuGuDan = () => {
-		return <div>Hello, Hooks</div>
+		const [first, setFirst] = React.useState(Math.ceil(Math.random() * 9));
+		const [second, setSecond] = React.useState(Math.ceil(Math.random() * 9));
+		const [value, setValue] = React.useState('');
+		const [result, setResult] = React.useState('');
+
+		return (
+			<React.Fragment>
+				<div>{first} * {second} = </div>
+				<form>
+					<input value={value}/><button>입력!</button>
+				</form>
+				<div id="result">{result}</div>
+			</React.Fragment>
+		);
 	}
 	ReactDOM.render(<GuGuDan/>, document.querySelector('#hooks'));
 </script>
