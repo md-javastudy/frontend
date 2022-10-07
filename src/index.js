@@ -3,8 +3,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 // React 요소
 const app = React.createElement(
-    'div',
-    { className: 'app' },
+  'div',
+  { className: 'app' },
     'React App 매뉴얼 구성'
 );
 // DOM 노드
