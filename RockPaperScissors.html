@@ -1,0 +1,57 @@
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>가위바위보</title>
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    class RockPaperScissors extends React.Component {
+      array = ['가위','바위','보'];
+      state = {
+        user1Select : Math.ceil(Math.random() * 3),
+        user2Select : Math.ceil(Math.random() * 3),
+        user1 : '준비중',
+        user2 : '준비중',
+        value: '',
+        result : '준비상태입니다',
+      };
+
+      onSubmit = (e) => {
+        e.preventDefault();
+        this.setState((prevState) => {
+          return {
+            user1Select : Math.ceil(Math.random() * 3),
+            user2Select : this.state.value,
+            user1 : this.array[prevState.user1Select -1],
+            user2 : this.array[prevState.value -1],
+            result : (prevState.user1Select - prevState.value === 0) ? '무승부하셨습니다'
+                    : ((3 + prevState.user1Select - prevState.value) % 3 === 2) ? 'USER2가 승리했습니다'
+                    : 'USER1가 승리했습니다',
+          };
+        })
+      };
+
+      render() {
+        return (
+          <React.Fragment>
+            <form onSubmit={this.onSubmit}>
+              <button onClick={(e) => this.setState({value: 1})}>가위</button>
+              <button onClick={(e) => this.setState({value: 2})}>바위</button>
+              <button onClick={(e) => this.setState({value: 3})}>보</button>
+            </form>
+            <div>USER1는 {this.state.user1}, USER2는 {this.state.user2}입니다.</div>
+            <div>{this.state.result}</div>
+          </React.Fragment>
+        );
+      }
+    }
+  </script>
+  <script type="text/babel">
+    ReactDOM.render(<RockPaperScissors />, document.querySelector('#root'));
+  </script>
+</body>
+</html>
