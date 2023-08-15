@@ -1,6 +1,6 @@
 {
-  "name": "frontend_next",
-  "version": "0.0.1",
+  "name": "next-todo",
+  "version": "1.0.0",
   "main": "index.js",
   "scripts": {
     "dev" : "next",
@@ -8,7 +8,7 @@
     "start" : "next start"
   },
   "dependencies": {
-    "next": "^13.4.9",
+    "next": "latest",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   }
