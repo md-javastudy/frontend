@@ -1,0 +1,68 @@
+<svelte:head>
+	<title>Study</title>
+	<meta name="description" content="Study this app" />
+</svelte:head>
+
+<script>
+	let todos = [];
+	let inputFormTag;
+	let todo = '';
+	$: console.log( todo );
+
+	const addTodo = () => {
+		if(!todo.trim() ) {
+			alert('할 일을 추가하주세요!');
+			todo = '';
+		} else {
+			todos.push(todo);
+			todos = todos;
+			todo = '';
+		}
+	}
+
+	const deleteTodoAll = () => {
+		alert('전체 삭제하였습니다.');
+		todos = [];
+	}
+</script>
+
+<div class="text-column">
+	<h1>Svelte Todo List</h1>
+
+	<input type='text'
+		bind:value={todo}
+		on:keydown={() => {
+			event.key === 'Enter' && addTodo()
+		}}/>
+
+	<button on:click={addTodo}>할 일 추가하기</button>
+
+	<ul>
+		{ #each todos as item }
+		<li>{ item }</li>
+		{ :else }
+		<li>추가된 할 일이 없습니다.</li>
+		{ /each }
+	</ul>
+	<hr />
+
+	<button on:click={ deleteTodoAll }>할 일 전체삭제</button>
+
+	<p>
+		This is a <a href="https://kit.svelte.dev">SvelteKit</a> app. You can make your own by typing the
+		following into your command line and following the prompts:
+	</p>
+
+	<pre>npm create svelte@latest</pre>
+
+	<p>
+		The page you're looking at is purely static HTML, with no client-side interactivity needed.
+		Because of that, we don't need to load any JavaScript. Try viewing the page's source, or opening
+		the devtools network panel and reloading.
+	</p>
+
+	<p>
+		The <a href="/sverdle">Sverdle</a> page illustrates SvelteKit's data loading and form handling. Try
+		using it with JavaScript disabled!
+	</p>
+</div>
