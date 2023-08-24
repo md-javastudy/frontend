@@ -1,9 +1,10 @@
 <script>
-	export let todos = [];
+	export let listTodos = [];
+	export let user = [];
 </script>
 <ul>
-	{ #each todos as item }
-	<li>{ item }</li>
+	{ #each listTodos as item }
+	<li>{ item } - <small style="color:#bbb">{ user[0] } ({ user[1] })</small></li>
 	{ :else }
 	<li>추가된 할 일이 없습니다.</li>
 	{ /each }
